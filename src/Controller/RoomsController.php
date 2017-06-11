@@ -20,10 +20,18 @@ class RoomsController extends AppController
      */
     public function index()
     {
+
         $this->paginate = [
             'contain' => ['Statuses']
         ];
         $rooms = $this->paginate($this->Rooms);
+        if($this->request->is('post')){
+          $status = $this->request->getData('status_id');
+          $filter_rooms = $this->Rooms->find()->where(['status_id =' => $status]);
+          // dd($this->request->getData());
+          $rooms = $this->paginate($filter_rooms);
+        }
+
 
         $this->set(compact('rooms'));
         $this->set('_serialize', ['rooms']);

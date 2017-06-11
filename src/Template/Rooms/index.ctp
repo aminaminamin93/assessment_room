@@ -14,6 +14,16 @@
 </nav>
 <div class="rooms index large-9 medium-8 columns content">
     <h3><?= __('Rooms') ?></h3>
+    <div class="col-md-5">
+      <?= $this->Form->create(null, ['url'=>'rooms/', 'method'=>'post']) ?>
+      <div class="form-group">
+        <label for="">Filter:</label>
+        <?= $this->Form->select('status_id', ['1'=>'Available', '2'=>'Not Available'],['empty'=> 'Select status', 'style'=>'width:50%;float:left']) ?>
+        <button type="submit" style="float:left">Filter</button>
+      </div>
+
+      <?= $this->Form->end() ?>
+    </div>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
