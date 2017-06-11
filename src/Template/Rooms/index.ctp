@@ -19,7 +19,7 @@
       <div class="form-group">
         <label for="">Filter:</label>
         <?= $this->Form->select('status_id', ['1'=>'Available', '2'=>'Not Available'],['empty'=> 'Select status', 'style'=>'width:50%;float:left']) ?>
-        <button type="submit" style="float:left">Filter</button>
+        <button type="submit"  style="float:left">Filter</button>
       </div>
 
       <?= $this->Form->end() ?>
