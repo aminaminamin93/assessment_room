@@ -26,8 +26,17 @@ class RoomsController extends AppController
         ];
         $rooms = $this->paginate($this->Rooms);
         if($this->request->is('post')){
-          $status = $this->request->getData('status_id');
-          $filter_rooms = $this->Rooms->find()->where(['status_id =' => $status]);
+          $conditions = [];
+
+          if($status = $this->request->getData('status_id')){
+            $conditions[]= ['status_id'=>$status];
+          }
+
+          if($price_per_day = $this->request->getData('price_per_day')){
+            $conditions[] = ['price_per_day'=>$price_per_day];
+          }
+          // dd($conditions);
+          $filter_rooms = $this->Rooms->find()->where($conditions);
           // dd($this->request->getData());
           $rooms = $this->paginate($filter_rooms);
         }

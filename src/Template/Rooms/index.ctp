@@ -19,6 +19,8 @@
       <div class="form-group">
         <label for="">Filter:</label>
         <?= $this->Form->select('status_id', ['1'=>'Available', '2'=>'Not Available'],['empty'=> 'Select status', 'style'=>'width:50%;float:left']) ?>
+        <br style="clear:left">
+        <?= $this->Form->input('price_per_day', ['style'=>'width:50%;']) ?>
         <button type="submit"  style="float:left">Filter</button>
       </div>
 
