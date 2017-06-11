@@ -20,7 +20,7 @@ class RoomsController extends AppController
      */
     public function index()
     {
-
+        $this->loadModel('Statuses');
         $this->paginate = [
             'contain' => ['Statuses']
         ];
@@ -36,14 +36,16 @@ class RoomsController extends AppController
             $conditions[] = ['price_per_day'=>$price_per_day];
           }
           // dd($conditions);
+
           $filter_rooms = $this->Rooms->find()->where($conditions);
           // dd($this->request->getData());
           $rooms = $this->paginate($filter_rooms);
         }
 
-
-        $this->set(compact('rooms'));
-        $this->set('_serialize', ['rooms']);
+        $statuses = $this->Statuses->find('list')->toArray();
+        // dd($statuses);
+        $this->set(compact('rooms','statuses'));
+        $this->set('_serialize', ['rooms','statuses']);
     }
 
     /**
